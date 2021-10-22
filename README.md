@@ -18,7 +18,8 @@ pip install opencv-python, matplotlib, sklearn, tqdm
 
 # Test model
 
-Inference:
+Run `MTM`, `DRM` and `TFM` modules to get final output.
+
 ```python
 python test.py --model MTM --name MTM --dataroot mpv3d_example --datalist test_pairs --results_dir results
 python test.py --model DRM --name DRM --dataroot mpv3d_example --datalist test_pairs --results_dir results
