@@ -3,7 +3,10 @@
 datasets/
 results/
 outs/
+<<<<<<< HEAD
 logs/
+=======
+>>>>>>> 918a645704f45a65b659da85c31cb66534a9e686
 
 .DS_Store
 
