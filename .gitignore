@@ -5,6 +5,7 @@ results/
 
 .DS_Store
 
+*.zip
 *.pth
 *.jpg
 *.txt

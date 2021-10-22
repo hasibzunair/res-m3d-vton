@@ -12,7 +12,7 @@ conda create --name comp6381 python=3.8
 conda activate comp6381
 conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c nvidia
 conda install -c conda-forge jupyterlab
-pip install opencv-python, matplotlib, sklearn, tqdm
+pip install opencv-python, matplotlib, sklearn, tqdm, pycocotools
 ```
 
 
@@ -26,6 +26,12 @@ python test.py --model DRM --name DRM --dataroot mpv3d_example --datalist test_p
 python test.py --model TFM --name TFM --dataroot mpv3d_example --datalist test_pairs --results_dir results
 python rgbd2pcd.py
 ```
+
+# Preprocess data
+
+After downlaoding dataset, run:
+
+`python util/data_preprocessing.py --MPV3D_root datasets/MPV3D/`
 
 # Todos
 
