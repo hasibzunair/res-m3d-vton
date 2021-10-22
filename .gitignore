@@ -2,6 +2,7 @@
 
 datasets/
 results/
+outs/
 
 .DS_Store
 
