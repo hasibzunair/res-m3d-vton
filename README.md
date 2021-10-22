@@ -7,7 +7,7 @@ This code is built on top of M3D-VTON: A Monocular-to-3D Virtual Try-On Network
 # Make env
 Run below commands.
 
-````
+```
 conda create --name comp6381 python=3.8
 conda activate comp6381
 conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c nvidia
