@@ -44,7 +44,7 @@ python test.py --model MTM --name MTM --dataroot  datasets/MPV3D/ --datalist tra
 
 # Train DRM
 ```python
-python train.py --model DRM --name DRM --dataroot datasets/MPV3D/ --warproot outs/mtm_results/aligned/MTM/train_pairs --datalist train_pairs --checkpoints_dir logs/exp1
+python train.py --model DRM --name DRM --batch_size 4 --dataroot datasets/MPV3D/ --warproot outs/mtm_results/aligned/MTM/train_pairs --datalist train_pairs --checkpoints_dir logs/exp1
 
 ```
 
