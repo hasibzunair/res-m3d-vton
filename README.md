@@ -5,6 +5,7 @@ This code is built on top of M3D-VTON: A Monocular-to-3D Virtual Try-On Network
 `https://github.com/fyviezhao/M3D-VTON`.
 
 # Make env
+Run below commands.
 
 ````
 conda create --name comp6381 python=3.8
@@ -28,7 +29,7 @@ python rgbd2pcd.py
 # Todos
 
 * <s>Run repo code</s>
-* Get final output on example image
+* <s>Get final output on example image</s>
 * Get output on custom image
 * <s> </s>
 
