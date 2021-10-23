@@ -50,7 +50,8 @@ python train.py --model DRM --name DRM --batch_size 4 --dataroot datasets/MPV3D/
 
 # Train TFM
 ```python
-python train.py --model MTM --name MTM --dataroot datasets/MPV3D/ --datalist train_pairs --checkpoints_dir logs/exp1
+python train.py --model TFM --name TFM --dataroot datasets/MPV3D/ --warproot outs/mtm_results/aligned/MTM/train_pairs --datalist train_pairs --checkpoints_dir logs/exp1
+
 ```
 (See options/base_options.py and options/train_options.py for more training options.)
 
