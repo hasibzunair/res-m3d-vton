@@ -54,6 +54,7 @@ bash infer.sh
 
 * <s>Run repo code</s>
 * <s>Get final output on example image</s>
+* Put results folder in subfolder with experiment name to keep track
 * Get output on custom image
 * <s> </s>
 
