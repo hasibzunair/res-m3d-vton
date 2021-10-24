@@ -1,1 +1,0 @@
-Please put the downloaded latest_net_DRM.pth model here.
