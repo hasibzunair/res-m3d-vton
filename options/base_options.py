@@ -80,7 +80,7 @@ class BaseOptions():
 
         # save and return the parser
         self.parser = parser
-        return parser.parse_args("") # If work in IPython (Jupyter Notebook), you need to pass an empty string: parser.parse_args("")
+        return parser.parse_args() # If work in IPython (Jupyter Notebook), you need to pass an empty string: parser.parse_args("")
 
     def print_options(self, opt):
         """Print and save options
