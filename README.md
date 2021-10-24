@@ -46,13 +46,8 @@ python train.py --model TFM --name TFM --dataroot datasets/MPV3D/ --warproot out
 
 # Test model
 
-Put the models in `pretrained` folder. Run `MTM`, `DRM` and `TFM` modules to get final output.
-
-```python
-python test.py --model MTM --name MTM --dataroot mpv3d_example --datalist test_pairs --results_dir results
-python test.py --model DRM --name DRM --dataroot mpv3d_example --datalist test_pairs --results_dir results
-python test.py --model TFM --name TFM --dataroot mpv3d_example --datalist test_pairs --results_dir results
-python rgbd2pcd.py
+```
+bash infer.sh
 ```
 
 # Todos
