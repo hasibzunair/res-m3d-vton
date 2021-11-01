@@ -61,8 +61,7 @@ Mains:
 
 Others:
 
-* <s>Run repo code</s>
-* <s>Get final output on example image</s>
+* Analyse same cloth and random cloth images
 * Get output on custom image
 
 
