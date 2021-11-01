@@ -68,3 +68,4 @@ Others:
 
 # References
 * [https://arxiv.org/abs/2108.05126](https://arxiv.org/abs/2108.05126)
+* Metrics computed using [PyTorch FID](https://github.com/mseitzer/pytorch-fid) package
