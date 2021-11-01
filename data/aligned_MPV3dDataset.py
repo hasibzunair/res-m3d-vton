@@ -56,8 +56,8 @@ class AlignedMPV3dDataset(BaseDataset):
                 self.c_names.append(c_name)
         
         # Do this for same cloth person (used for SSIM and FID eval)
-        #self.c_names = sorted(c_names)
-        #self.im_names = sorted(im_names)
+        self.c_names = sorted(self.c_names)
+        self.im_names = sorted(self.im_names)
         
         # define the default transform function. You can use <base_dataset.get_transform>; You can also define your custom transform function
         self.transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
