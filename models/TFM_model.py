@@ -15,6 +15,8 @@ import torch
 from .base_model import BaseModel
 from . import networks
 import sys
+import ipdb
+
 sys.path.append("..")
 from util import util
 
@@ -84,7 +86,10 @@ class TFMModel(BaseModel):
             opt.input_nc += 1
         if self.input_depth:
             opt.input_nc += 1
-        self.netTFM = networks.define_TFM(opt.input_nc, opt.output_nc, opt.num_downs, opt.ngf, opt.norm, opt.use_dropout, opt.init_type, opt.init_gain, self.gpu_ids)
+        ###########################################################  
+        # using ResUnetGenerator
+        self.netTFM = networks.define_ResUnet_TFM(opt.input_nc, opt.output_nc, opt.num_downs, opt.ngf, opt.norm, opt.use_dropout, opt.init_type, opt.init_gain, self.gpu_ids)
+        ###########################################################
         if self.isTrain:
             self.netD = networks.define_D(opt.input_nc_D, opt.ndf, opt.netD, opt.n_layers_D, opt.norm, opt.init_type, opt.init_gain, self.gpu_ids)
 

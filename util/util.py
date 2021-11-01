@@ -5,7 +5,7 @@ import torchvision.transforms as transforms
 import numpy as np
 from PIL import Image
 import os
-
+import cv2
 
 def tensor2im(input_image, imtype=np.uint8):
     """"Converts a Tensor array (select the first one in case of batch input) into a numpy image array.
@@ -220,6 +220,9 @@ def save_image(image_numpy, image_path, aspect_ratio=1.0):
         image_pil = image_pil.resize((h, int(w * aspect_ratio)), Image.BICUBIC)
     if aspect_ratio < 1.0:
         image_pil = image_pil.resize((int(h / aspect_ratio), w), Image.BICUBIC)
+
+    #image_cv = cv2.cvtColor(np.array(image_pil)*255, cv2.COLOR_RGB2BGR)
+    #cv2.imwrite(image_path, image_cv)
     image_pil.save(image_path)
 
 def save_depth(depth_numpy, depth_path):

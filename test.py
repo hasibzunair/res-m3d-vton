@@ -37,6 +37,8 @@ if __name__ == '__main__':
         os.makedirs(os.path.join(results_dir, 'initial-normal-vis'), exist_ok=True)
     if 'TFM' in opt.model:
         os.makedirs(os.path.join(results_dir, 'tryon'), exist_ok=True)
+        os.makedirs(os.path.join(results_dir, 'person'), exist_ok=True)
+        os.makedirs(os.path.join(results_dir, 'cloth'), exist_ok=True)
     if 'DRM' in opt.model:
         os.makedirs(os.path.join(results_dir, 'final-depth'), exist_ok=True)
         os.makedirs(os.path.join(results_dir, 'final-depth-vis'), exist_ok=True)
@@ -50,7 +52,7 @@ if __name__ == '__main__':
     dataset_size = len(dataset)
     model = create_model(opt)     # create a model given opt.model and other options
     model.setup(opt)              # regular setup: load and print networks
-  
+    
     # test with eval mode. This only affects layers like batchnorm and dropout.
     if opt.eval:
         model.eval()
@@ -107,8 +109,14 @@ if __name__ == '__main__':
                     save_image(tensor2im(decode_labels(model.segmt_pred_argmax)), os.path.join(results_dir, 'segmt-vis', im_name.replace('front.png', 'segmt_vis.png')))
         
         if 'TFM' in opt.model: # save p_tryon to disk
+            #import ipdb; ipdb.set_trace()
+            c = Image.open(os.path.join(opt.dataroot, 'cloth', data['c_name'][0]))
+            c.save(os.path.join(results_dir, 'cloth', im_name))
+            im = Image.open(os.path.join(opt.dataroot, 'image', data['im_name'][0]))
+            im.save(os.path.join(results_dir, 'person', im_name))
+            
             save_image(tensor2im(model.p_tryon), os.path.join(results_dir, 'tryon', im_name))
-        
+            
         if 'DRM' in opt.model: # save refined depth to disk
             imfd_pred = model.imfd_pred.squeeze(0).squeeze(0).cpu().float().numpy()
             imbd_pred = model.imbd_pred.squeeze(0).squeeze(0).cpu().float().numpy()
