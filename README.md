@@ -55,13 +55,11 @@ bash infer.sh
 Mains:
 * <s>Setting up the M3D-VTON algorithm</s>
 * <s>Implement residual units to improve 2D try-on outputs</s>
-* Show results visually to demonstrate improved performance
+* <s>Show results visually to demonstrate improved performance</s>
 * Build end-to-end pipeline to use custom (person image, cloth) pairs as input
 * Visually test M3D-VTON and proposed method on custom images
 
 Others:
-
-* Analyse same cloth and random cloth images
 * Get output on custom image
 
 
