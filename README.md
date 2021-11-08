@@ -2,7 +2,7 @@
 
 [Project Page](https://hasibzunair.github.io/resm3dvton/)
 
-This code is built on top of **ICCV 2021** paper M3D-VTON: A Monocular-to-3D Virtual Try-On Network ([Paper](https://arxiv.org/abs/2108.05126), [Code](https://github.com/fyviezhao/M3D-VTON))
+This code is built on top of ICCV 2021 paper *M3D-VTON: A Monocular-to-3D Virtual Try-On Network* ([Paper](https://arxiv.org/abs/2108.05126), [Code](https://github.com/fyviezhao/M3D-VTON))
 
 ### Make environment
 
