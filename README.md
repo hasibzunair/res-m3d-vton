@@ -2,7 +2,7 @@
 
 This code is built on top of M3D-VTON: A Monocular-to-3D Virtual Try-On Network ([Paper](https://arxiv.org/abs/2108.05126), [Code](https://github.com/fyviezhao/M3D-VTON))
 
-# Make env
+# Make environment
 
 Python >= 3.8.0 required. Run below commands.
 ```
@@ -13,22 +13,24 @@ conda install -c conda-forge jupyterlab
 pip install opencv-python, matplotlib, sklearn, tqdm, pycocotools, tensorboard
 ```
 
-# Preprocess data
+OR run `conda env create -f <environment-name>.yml`.
 
-After downlaoding dataset, run:
+### Preprocess data
+
+After downlaoding dataset, keep it in a folder named `datasets` in the root directory and then run:
 
 ```python
 python util/data_preprocessing.py --MPV3D_root datasets/MPV3D/
 ```
 
-# Train MTM
-```python
-python train.py --model MTM --name MTM --dataroot datasets/MPV3D/ --datalist train_pairs --checkpoints_dir logs/exp1
+### Train MTM module
+```sh
+python train.py --model MTM --name MTM --dataroot datasets/MPV3D/ --datalist train_pairs --checkpoints_dir logs/res-m3dvton
 ```
 then run the command below to obtain the --warproot (here refers to the --results_dir) which is necessary for the other two modules:
 
 ```python
-python test.py --model MTM --name MTM --dataroot  datasets/MPV3D/ --datalist train_pairs --checkpoints_dir logs/exp1/ --results_dir outs/mtm_results
+python test.py --model MTM --name MTM --dataroot  datasets/MPV3D/ --datalist train_pairs --checkpoints_dir logs/res-m3dvton/ --results_dir outs/mtm_results
 ```
 
 # Train DRM
