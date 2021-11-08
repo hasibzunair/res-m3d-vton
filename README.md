@@ -54,7 +54,7 @@ python train.py --model TFM --name TFM --dataroot datasets/MPV3D/ --warproot out
 bash infer.sh
 ```
 
-# Todos
+### Todos
 
 Mains:
 * <s>Setting up the M3D-VTON algorithm</s>
@@ -67,6 +67,6 @@ Others:
 * Get output on custom image
 
 
-# References
+### References
 * [https://arxiv.org/abs/2108.05126](https://arxiv.org/abs/2108.05126)
-* Metrics computed using [PyTorch FID](https://github.com/mseitzer/pytorch-fid) package
+* Metrics computed using [PyTorch FID](https://github.com/mseitzer/pytorch-fid) and [PyTorch SSIM](https://github.com/Po-Hsun-Su/pytorch-ssim) packages.
