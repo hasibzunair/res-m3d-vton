@@ -43,16 +43,13 @@ python train.py --model DRM --name DRM --batch_size 4 --dataroot datasets/MPV3D/
 
 ### Train Residual U-Net TFM
 ```python
-python train.py --model TFM --name TFM --dataroot datasets/MPV3D/ --warproot outs/mtm_outputs/aligned/MTM/train_pairs --datalist train_pairs --checkpoints_dir logs/res-m3dvton
+python train.py --model TFM --name TFM --batch_size 2 --dataroot datasets/MPV3D/ --warproot outs/mtm_outputs/aligned/MTM/train_pairs --datalist train_pairs --checkpoints_dir logs/res-m3dvton
 
 ```
 (See options/base_options.py and options/train_options.py for more training options.)
 
-# Test model
-
-```
-bash infer.sh
-```
+### Test model
+Run `bash infer.sh`.
 
 ### Todos
 
