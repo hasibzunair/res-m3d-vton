@@ -29,19 +29,18 @@ python train.py --model MTM --name MTM --dataroot datasets/MPV3D/ --datalist tra
 ```
 then run the command below to obtain the --warproot (here refers to the --results_dir) which is necessary for the other two modules:
 
-```python
-python test.py --model MTM --name MTM --dataroot  datasets/MPV3D/ --datalist train_pairs --checkpoints_dir logs/res-m3dvton/ --results_dir outs/mtm_results
+```sh
+python test.py --model MTM --name MTM --dataroot  datasets/MPV3D/ --datalist train_pairs --checkpoints_dir logs/res-m3dvton/ --results_dir outs/mtm_outputs
 ```
 
-# Train DRM
-```python
-python train.py --model DRM --name DRM --batch_size 4 --dataroot datasets/MPV3D/ --warproot outs/mtm_results/aligned/MTM/train_pairs --datalist train_pairs --checkpoints_dir logs/exp1
-
+### Train DRM
+```sh
+python train.py --model DRM --name DRM --batch_size 4 --dataroot datasets/MPV3D/ --warproot outs/mtm_outputs/aligned/MTM/train_pairs --datalist train_pairs --checkpoints_dir logs/res-m3dvton
 ```
 
-# Train TFM
-```python
-python train.py --model TFM --name TFM --dataroot datasets/MPV3D/ --warproot outs/mtm_results/aligned/MTM/train_pairs --datalist train_pairs --checkpoints_dir logs/exp1
+### Train Residual U-Net TFM
+```sh
+python train.py --model TFM --name TFM --dataroot datasets/MPV3D/ --warproot outs/mtm_outputs/aligned/MTM/train_pairs --datalist train_pairs --checkpoints_dir logs/res-m3dvton
 
 ```
 (See options/base_options.py and options/train_options.py for more training options.)
