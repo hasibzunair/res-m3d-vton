@@ -51,19 +51,15 @@ python train.py --model TFM --name TFM --batch_size 2 --dataroot datasets/MPV3D/
 ### Test model
 Run `bash infer.sh`.
 
-### Todos
+Now you should get the point cloud file prepared for remeshing under `results/aligned/pcd/test_pairs/*.ply`. [MeshLab](https://www.meshlab.net/) can be used to remesh the predicted point cloud, with two simple steps below:
 
-Mains:
-* <s>Setting up the M3D-VTON algorithm</s>
-* <s>Implement residual units to improve 2D try-on outputs</s>
-* <s>Show results visually to demonstrate improved performance</s>
-* Build end-to-end pipeline to use custom (person image, cloth) pairs as input
-* Visually test M3D-VTON and proposed method on custom images
+- Normal Estimation: Open MeshLab and load the point cloud file, and then go to Filters --> Normals, Curvatures and Orientation --> Compute normals for point sets
 
-Others:
-* Get output on custom image
+- Possion Remeshing: Go to Filters --> Remeshing, Simplification and Reconstruction --> Surface Reconstruction: Screen Possion (set reconstruction depth = 9)
+
+Now you will get the final 3D try-on result!
 
 
 ### References
-* [https://arxiv.org/abs/2108.05126](https://arxiv.org/abs/2108.05126)
+* [M3D-VTON: A Monocular-to-3D Virtual Try-On Network](https://arxiv.org/abs/2108.05126)
 * Metrics computed using [PyTorch FID](https://github.com/mseitzer/pytorch-fid) and [PyTorch SSIM](https://github.com/Po-Hsun-Su/pytorch-ssim) packages.
