@@ -1,8 +1,8 @@
-## Monocular-to-3D Virtual Try-On using Deep Residual U-Net
-
-A course project for COMP 6321 Digital Geometric Modelling, Fall 2021.
+# Monocular-to-3D Virtual Try-On using Deep Residual U-Net
 
 [Project Page](https://hasibzunair.github.io/resm3dvton/)
+
+A course project for COMP 6321 Digital Geometric Modelling, Fall 2021.
 
 This code is built on top of ICCV 2021 paper *M3D-VTON: A Monocular-to-3D Virtual Try-On Network* ([Paper](https://arxiv.org/abs/2108.05126), [Code](https://github.com/fyviezhao/M3D-VTON))
 
