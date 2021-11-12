@@ -1,6 +1,6 @@
 # Monocular-to-3D Virtual Try-On using Deep Residual U-Net
 
-A course project for COMP 6321 Digital Geometric Modelling, Fall 2021.
+A course project for COMP 6381 Digital Geometric Modelling, Fall 2021.
 
 [[Project Page](https://hasibzunair.github.io/resm3dvton/)]
 
