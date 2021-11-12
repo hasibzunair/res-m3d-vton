@@ -1,6 +1,6 @@
 # Monocular-to-3D Virtual Try-On using Deep Residual U-Net
 
-[Project Page](https://hasibzunair.github.io/resm3dvton/)
+[[Project Page](https://hasibzunair.github.io/resm3dvton/)]
 
 <p align="center">
     <a href="#"><img src="./assets/vis_3d.png"></a> <br/>
