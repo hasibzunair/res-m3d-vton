@@ -57,6 +57,8 @@ python train.py --model TFM --name TFM --batch_size 2 --dataroot datasets/MPV3D/
 ```
 (See options/base_options.py and options/train_options.py for more training options.)
 
+
+
 ### Test model
 Run `bash infer.sh`.
 
