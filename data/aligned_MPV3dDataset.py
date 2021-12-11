@@ -1,5 +1,4 @@
 """Dataset class.
-
 You can specify '--dataset_mode unaligned' to use this dataset.
 The class name should be consistent with both the filename and its datamode option.
 The filename should be <datamode>_dataset.py
@@ -17,11 +16,9 @@ class AlignedMPV3dDataset(BaseDataset):
     @staticmethod
     def modify_commandline_options(parser, is_train):
         """Add new dataset-specific options, and rewrite default values for existing options.
-
         Parameters:
             parser          -- original option parser
             is_train (bool) -- whether training phase or test phase. You can use this flag to add training-specific or test-specific options.
-
         Returns:
             the modified parser.
         """
@@ -32,10 +29,8 @@ class AlignedMPV3dDataset(BaseDataset):
 
     def __init__(self, opt):
         """Initialize this dataset class.
-
         Parameters:
             opt (Option class) -- stores all the experiment flags; needs to be a subclass of BaseOptions
-
         A few things done here.
         - save the options (have been done in BaseDataset)
         - get image paths and meta information of the dataset.
@@ -43,6 +38,7 @@ class AlignedMPV3dDataset(BaseDataset):
         """
         # save the option and dataset root
         BaseDataset.__init__(self, opt)
+        self.isTrain = opt.isTrain
         self.model = opt.model
         self.img_width, self.img_height = opt.img_width, opt.img_height
         self.radius = opt.radius
@@ -54,25 +50,24 @@ class AlignedMPV3dDataset(BaseDataset):
                 im_name, c_name = line.strip().split()
                 self.im_names.append(im_name)
                 self.c_names.append(c_name)
+                
         
         ############################################################
         # Do this for same cloth person (used for SSIM and FID eval)
         # self.c_names = sorted(self.c_names)
         # self.im_names = sorted(self.im_names)
         ############################################################
+
         
         # define the default transform function. You can use <base_dataset.get_transform>; You can also define your custom transform function
         self.transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
     
     def __getitem__(self, index):
         """Return a data point and its metadata information.
-
         Parameters:
             index -- a random integer for data indexing
-
         Returns:
             a dictionary of data with their names. It usually contains the data itself and its metadata information.
-
         Step 1: get a random image path: e.g., path = self.image_paths[index]
         Step 2: load your data from the disk: e.g., image = Image.open(path).convert('RGB').
         Step 3: convert your data to a PyTorch tensor. You can use helpder functions such as self.transform. e.g., data = self.transform(image)
@@ -180,29 +175,35 @@ class AlignedMPV3dDataset(BaseDataset):
             imhal_sobelx, imhal_sobely = '', ''
 
         # im depth (front)
-        imfd = np.load(os.path.join(self.dataroot, 'depth', im_name.replace('.png', '_depth.npy')))
-        imfd_m = (imfd > 0).astype(np.float32)
-        imfd = -1 * (2 * imfd -1) # viewport -> ndc -> world
-        imfd = imfd * imfd_m
-        imfd = torch.from_numpy(imfd).unsqueeze(0)
-        if self.model == 'DRM' or self.model == 'TFM':
+        if self.model == 'MTM' and self.isTrain:
+            imfd = np.load(os.path.join(self.dataroot, 'depth', im_name.replace('.png', '_depth.npy')))
+            imfd_m = (imfd > 0).astype(np.float32)
+            imfd = -1 * (2 * imfd -1) # viewport -> ndc -> world
+            imfd = imfd * imfd_m
+            imfd = torch.from_numpy(imfd).unsqueeze(0)
+        elif self.model == 'DRM' or self.model == 'TFM':
+            imfd = ''
             imfd_initial = np.load(os.path.join(self.warproot, 'initial-depth', im_name.replace('whole_front.png', 'initial_front_depth.npy')))
             imfd_initial = torch.from_numpy(imfd_initial).unsqueeze(0)
         else:
+            imfd = ''
             imfd_initial = ''
 
 
         # im depth (back)
-        imbd = np.load(os.path.join(self.dataroot, 'depth', im_name.replace('front.png', 'back_depth.npy')))
-        imbd = np.flip(imbd, axis = 1) # align with imfd
-        imbd_m = (imbd > 0).astype(np.float32)
-        imbd = 2 * imbd -1 # viewport -> ndc -> world
-        imbd = imbd * imbd_m
-        imbd = torch.from_numpy(imbd).unsqueeze(0)
-        if self.model == 'DRM':
+        if self.model == 'MTM' and self.isTrain:
+            imbd = np.load(os.path.join(self.dataroot, 'depth', im_name.replace('front.png', 'back_depth.npy')))
+            imbd = np.flip(imbd, axis = 1) # align with imfd
+            imbd_m = (imbd > 0).astype(np.float32)
+            imbd = 2 * imbd -1 # viewport -> ndc -> world
+            imbd = imbd * imbd_m
+            imbd = torch.from_numpy(imbd).unsqueeze(0)
+        elif self.model == 'DRM':
+            imbd = ''
             imbd_initial = np.load(os.path.join(self.warproot, 'initial-depth', im_name.replace('whole_front.png', 'initial_back_depth.npy')))
             imbd_initial = torch.from_numpy(imbd_initial).unsqueeze(0)
         else:
+            imbd = ''
             imbd_initial = ''
 
         # load pose points

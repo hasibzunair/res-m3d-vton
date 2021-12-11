@@ -69,6 +69,13 @@ Now you should get the point cloud file prepared for remeshing under `results/al
 Now you will get the final 3D try-on result!
 
 
+### Custom
+
+`python util/data_preprocessing.py --MPV3D_root mpv3d_example_custom`
+`bash infer_custom.sh`
+
+
+
 ### References
 * [M3D-VTON: A Monocular-to-3D Virtual Try-On Network](https://arxiv.org/abs/2108.05126)
 * Metrics computed using [PyTorch FID](https://github.com/mseitzer/pytorch-fid) and [PyTorch SSIM](https://github.com/Po-Hsun-Su/pytorch-ssim) packages.

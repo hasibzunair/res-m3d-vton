@@ -1,5 +1,4 @@
 """Model class.
-
 You can specify '--model DRM' to use this model.
 It implement the following functions:
     <modify_commandline_options>:　Add model-specific options and rewrite default values for existing options.
@@ -23,11 +22,9 @@ class DRMModel(BaseModel):
     @staticmethod
     def modify_commandline_options(parser, is_train=True):
         """Add new model-specific options and rewrite default values for existing options.
-
         Parameters:
             parser -- the option parser
             is_train -- if it is training phase or test phase. You can use this flag to add training-specific or test-specific options.
-
         Returns:
             the modified parser.
         """
@@ -50,10 +47,8 @@ class DRMModel(BaseModel):
 
     def __init__(self, opt):
         """Initialize this model class.
-
         Parameters:
             opt -- training/test options
-
         A few things can be done here.
         - (required) call the initialization function of BaseModel
         - define loss function, visualization images, model names, and optimizers
@@ -124,7 +119,6 @@ class DRMModel(BaseModel):
 
     def set_input(self, input):
         """Unpack input data from the dataloader and perform necessary pre-processing steps.
-
         Parameters:
             input: a dictionary that contains the data itself and its metadata information.
         """
@@ -139,16 +133,17 @@ class DRMModel(BaseModel):
             self.imhal_sobely = input['imhal_sobely'].to(self.device) # for input
             self.c_sobelx = input['cloth_sobelx'].to(self.device)     # for input
             self.c_sobely = input['cloth_sobely'].to(self.device)     # for input
-        self.imfd = input['person_fdepth'].to(self.device)          # for ground truth
-        self.imbd = input['person_bdepth'].to(self.device)          # for ground truth
-        if self.use_grad_loss:
-            self.fgrad = self.compute_grad(self.imfd) # for ground truth
-            self.bgrad = self.compute_grad(self.imbd) # for ground truth
+        if self.isTrain:
+            self.imfd = input['person_fdepth'].to(self.device)          # for ground truth
+            self.imbd = input['person_bdepth'].to(self.device)          # for ground truth
+            if self.use_grad_loss:
+                self.fgrad = self.compute_grad(self.imfd) # for ground truth
+                self.bgrad = self.compute_grad(self.imbd) # for ground truth
 
-        if self.use_normal_loss or self.use_gan_loss:
-            self.im_mask = input['person_mask'].to(self.device) # for input
-            self.imfn = util.depth2normal_ortho(self.imfd).to(self.device) # for ground truth
-            self.imbn = util.depth2normal_ortho(self.imbd).to(self.device) # for ground truth
+            if self.use_normal_loss or self.use_gan_loss:
+                self.im_mask = input['person_mask'].to(self.device) # for input
+                self.imfn = util.depth2normal_ortho(self.imfd).to(self.device) # for ground truth
+                self.imbn = util.depth2normal_ortho(self.imbd).to(self.device) # for ground truth
 
     def forward(self):
         """Run forward pass. This will be called by both functions <optimize_parameters> and <test>."""

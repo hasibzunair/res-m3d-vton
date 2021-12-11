@@ -136,7 +136,7 @@ if __name__ == '__main__':
             parsename = imname.replace('.png','_label.png')
             parse_pth = os.path.join(parse_root, parsename)
             
-                    
+            print(parse_pth)
             c = Image.open(c_path)
             cm = Image.open(cm_path)
             c_array = np.array(c)

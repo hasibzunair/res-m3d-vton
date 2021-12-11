@@ -1,16 +1,16 @@
 """General-purpose test script for M3D-VTON
-
 Once you have trained your model with train.py, you can use this script to test the model.
 It will load a saved model from '--checkpoints_dir' and save the results to '--results_dir'.
 It first creates model and dataset given the option. It will hard-code some parameters.
 It then runs inference for '--num_test' images.
-
 See options/base_options.py and options/test_options.py for more test options.
 """
 import os
 import time
 import numpy as np
 import cv2
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from options.test_options import TestOptions
 from data import create_dataset
@@ -37,8 +37,6 @@ if __name__ == '__main__':
         os.makedirs(os.path.join(results_dir, 'initial-normal-vis'), exist_ok=True)
     if 'TFM' in opt.model:
         os.makedirs(os.path.join(results_dir, 'tryon'), exist_ok=True)
-        os.makedirs(os.path.join(results_dir, 'person'), exist_ok=True)
-        os.makedirs(os.path.join(results_dir, 'cloth'), exist_ok=True)
     if 'DRM' in opt.model:
         os.makedirs(os.path.join(results_dir, 'final-depth'), exist_ok=True)
         os.makedirs(os.path.join(results_dir, 'final-depth-vis'), exist_ok=True)
@@ -52,7 +50,7 @@ if __name__ == '__main__':
     dataset_size = len(dataset)
     model = create_model(opt)     # create a model given opt.model and other options
     model.setup(opt)              # regular setup: load and print networks
-    
+  
     # test with eval mode. This only affects layers like batchnorm and dropout.
     if opt.eval:
         model.eval()
@@ -109,14 +107,8 @@ if __name__ == '__main__':
                     save_image(tensor2im(decode_labels(model.segmt_pred_argmax)), os.path.join(results_dir, 'segmt-vis', im_name.replace('front.png', 'segmt_vis.png')))
         
         if 'TFM' in opt.model: # save p_tryon to disk
-            #import ipdb; ipdb.set_trace()
-            c = Image.open(os.path.join(opt.dataroot, 'cloth', data['c_name'][0]))
-            c.save(os.path.join(results_dir, 'cloth', im_name))
-            im = Image.open(os.path.join(opt.dataroot, 'image', data['im_name'][0]))
-            im.save(os.path.join(results_dir, 'person', im_name))
-            
             save_image(tensor2im(model.p_tryon), os.path.join(results_dir, 'tryon', im_name))
-            
+        
         if 'DRM' in opt.model: # save refined depth to disk
             imfd_pred = model.imfd_pred.squeeze(0).squeeze(0).cpu().float().numpy()
             imbd_pred = model.imbd_pred.squeeze(0).squeeze(0).cpu().float().numpy()
@@ -140,4 +132,4 @@ if __name__ == '__main__':
                 bnormal_vis = (bnormal_vis * 255).astype(np.uint8)
                 bnormal_pil = Image.fromarray(bnormal_vis)
                 bnormal_pil.save(os.path.join(results_dir, 'final-normal-vis', im_name.replace('front.png','back_normal.png')))
-    print(f'\nTest {opt.model} down.')
+    print(f'\nTesting {opt.model} finished.')
