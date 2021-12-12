@@ -58,7 +58,6 @@ python train.py --model TFM --name TFM --batch_size 2 --dataroot datasets/MPV3D/
 (See options/base_options.py and options/train_options.py for more training options.)
 
 
-
 ### Test model
 Run `bash infer.sh`.
 
@@ -71,12 +70,25 @@ Now you should get the point cloud file prepared for remeshing under `results/al
 Now you will get the final 3D try-on result!
 
 
-### Custom
-
-`python util/data_preprocessing.py --MPV3D_root mpv3d_example_custom`
-`bash infer_custom.sh`
+### Running on custom images
 
 
+See `notebooks/custom.ipynb` for resizing, binary segmentation and pose estimation.
+
+Prepare person image by following:
+
+1) Get a full body person image (P) and remove background with [https://www.remove.bg/](https://www.remove.bg/).
+2) Resize P to 320*512
+3) Get pose from P
+4) Get segmentation label from P
+
+Prepare clothing image by following:
+
+1) Get frontal clothing image (C) and resize to to 320*512
+2) Get binary mask of C
+
+Rename files following the MPV3D data format and then run `python util/data_preprocessing.py --MPV3D_root mpv3d_example_custom` to get
+preprocessed data. Finally run `bash infer_custom.sh` and follow steps above to get 3D tryon outputs.
 
 ### References
 * [M3D-VTON: A Monocular-to-3D Virtual Try-On Network](https://arxiv.org/abs/2108.05126)
