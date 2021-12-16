@@ -6,7 +6,7 @@ A course project for COMP 6381 Digital Geometric Modelling, Fall 2021.
 
 
 <p align="center">
-    <a href="#"><img src="./assets/combined.gif"></a> <br/>
+    <a href="#"><img src="./assets/combined1.gif"></a> <br/>
     <em>
         Figure 1. Comparing the 2D try-on and 3D mesh output of the proposed method with previous work.
     </em>
