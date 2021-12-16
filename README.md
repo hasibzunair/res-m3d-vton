@@ -4,12 +4,14 @@ A course project for COMP 6381 Digital Geometric Modelling, Fall 2021.
 
 [[Project Page](https://hasibzunair.github.io/resm3dvton/)]
 
+
 <p align="center">
-    <a href="#"><img src="./assets/vis_3d.png"></a> <br/>
+    <a href="#"><img src="./assets/combined.gif"></a> <br/>
     <em>
         Figure 1. Comparing the 2D try-on and 3D mesh output of the proposed method with previous work.
     </em>
 </p>
+
 
 This code is built on top of ICCV 2021 paper *M3D-VTON: A Monocular-to-3D Virtual Try-On Network* ([Paper](https://arxiv.org/abs/2108.05126), [Code](https://github.com/fyviezhao/M3D-VTON))
 
