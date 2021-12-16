@@ -75,7 +75,7 @@ Now you will get the final 3D try-on result!
 ### Running on custom images
 
 
-See `notebooks/custom.ipynb` for resizing, binary segmentation and pose estimation.
+See `notebooks/custom.ipynb` for resizing, binary segmentation and pose estimation. Also see `notebooks/parsing_colab.ipynb` for human parsing/multi-clas segmentation.
 
 Prepare person image by following:
 
