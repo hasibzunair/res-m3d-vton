@@ -8,7 +8,7 @@ A course project for COMP 6381 Digital Geometric Modelling, Fall 2021.
 <p align="center">
     <a href="#"><img src="./assets/combined1.gif"></a> <br/>
     <em>
-        Figure 1. Comparing the 2D try-on and 3D mesh output of the proposed method with previous work.
+        Figure 1. Given the reference person image (left) and target clothing image (middle), our method can reconstruct the 3D try-on mesh (right) with the clothing changed and person identity retained.
     </em>
 </p>
 
